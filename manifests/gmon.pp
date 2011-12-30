@@ -98,7 +98,7 @@ class ganglia::gmon {
 		owner	=> root,
 		group 	=> root,
 		mode	=> 644,
-		require	=> [File['/etc/ganglia/gmon.d'], File['/usr/lib/ganglia/python_modules'], ['/etc/ganglia/gmon.python.d']],
+		require	=> [File['/etc/ganglia/gmon.d'], File['/usr/lib/ganglia/python_modules'], File['/etc/ganglia/gmon.python.d']],
 		notify	=> Service['ganglia-monitor']
 	}
 
