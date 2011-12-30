@@ -4,7 +4,7 @@ class ganglia::web (
 	$conf_dir	= '/etc/ganglia/web.d'
 ) {
 
-	file { $www_dir:
+	file { $www_dir : 
 		source => "puppet:///modules/ganglia/${version}",
 		recurse => true,
 	}
@@ -14,7 +14,6 @@ class ganglia::web (
 		user 	=> root,
 		group 	=> www-data,
 		mode 	=> 750,
-		require	=> File['/etc/ganglia']
 	}
 
 	file { "${www_dir}/conf.php" :
@@ -23,6 +22,6 @@ class ganglia::web (
 		group 	=> www-data,
 		mode 	=> 640,
 		content	=> template('ganglia/web/conf.php.erb'),
-		require	=> [File[${conf_dir}], File[${www_dir}]]
+		require	=> [File[$conf_dir], File[$www_dir]]
 	}
 }
