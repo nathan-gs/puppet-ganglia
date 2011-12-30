@@ -68,7 +68,7 @@ class ganglia::gmon {
 
 		file { '/etc/ganglia/gmon.d/200-unicast-send-${name}.conf' :
 			ensure	=> present,
-			content	=> template('ganglia/gmon/100-unicast-send.conf.erb'),
+			content	=> template('ganglia/gmon/200-unicast-send.conf.erb'),
 			owner	=> root,
 			group 	=> root,
 			mode	=> 644,
