@@ -54,7 +54,7 @@ class ganglia::gmon {
 			mode	=> 644,
 			require	=> File['/etc/ganglia/gmon.d'],
 			notify	=> Service['ganglia-monitor']
-
+		}
 	}
 
 	define unicast_send (
