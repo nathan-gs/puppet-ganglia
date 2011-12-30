@@ -11,14 +11,14 @@ class ganglia::web (
 
 	file { $conf_dir :
 		ensure	=> directory,
-		user 	=> root,
-		group 	=> www-data,
+		owner 	=> 'root',
+		group 	=> 'www-data',
 		mode 	=> 750,
 	}
 
 	file { "${www_dir}/conf.php" :
 		ensure	=> present,
-		user 	=> root,
+		owner 	=> root,
 		group 	=> www-data,
 		mode 	=> 640,
 		content	=> template('ganglia/web/conf.php.erb'),
