@@ -25,11 +25,13 @@ class ganglia::gmeta {
 
 	define retriever (
 		$cluster = 'main',
-		$host = '',
+		$real_host = '',
 		$polling_interval = 10
 	) {
-		if $host == '' {
+		if $real_host == '' {
 			$host = $name
+		} else {
+			$host = $real_host
 		}
 
 		concat::fragment{ "gmeta-node-${name}":
