@@ -83,7 +83,7 @@ class ganglia::gmon {
 	) {
 		file { '/etc/ganglia/gmon.d/001-cluster.conf' :
 			ensure	=> present,
-			content	=> template('ganglia/gmon/000-cluster.conf.erb'),
+			content	=> template('ganglia/gmon/001-cluster.conf.erb'),
 			owner	=> root,
 			group 	=> root,
 			mode	=> 644,
