@@ -1,0 +1,6 @@
+<?php
+
+foreach (glob("<%= conf_dir %>/*.php") as $filename)
+{
+    include $filename;
+}

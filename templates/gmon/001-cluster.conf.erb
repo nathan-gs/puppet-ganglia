@@ -1,0 +1,14 @@
+/* If a cluster attribute is specified, then all gmond hosts are wrapped inside
+ * of a <CLUSTER> tag.  If you do not specify a cluster tag, then all <HOSTS> will
+ * NOT be wrapped inside of a <CLUSTER> tag. */
+cluster {
+  name = "<%= name %>"
+  owner = "<%= owner %>"
+  latlong = "unspecified"
+  url = "unspecified"
+}
+
+/* The host section describes attributes of the host, like the location */
+host {
+  location = "<%= location %>"
+}
