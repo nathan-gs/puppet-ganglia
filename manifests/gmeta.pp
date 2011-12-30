@@ -35,7 +35,7 @@ class ganglia::gmeta {
 		}
 
 		concat::fragment{ "gmeta-node-${name}":
-			target	=> $configuration_file,
+			target	=> '/etc/ganglia/gmetad.conf',
 			order   => 50,
 			content	=> 'data_soure "${cluster}" ${polling_interval} ${host}\n'
 		}
