@@ -31,9 +31,9 @@ class ganglia::gmon {
 		mode	=> 755,
 	}
 
-	file { '/etc/ganglia/gmon.d/000-globals.conf'
+	file { '/etc/ganglia/gmon.d/000-globals.conf' :
 		ensure	=> present,
-		content	=> template('ganglia/gmon/000-globals.conf.erb')
+		content	=> template('ganglia/gmon/000-globals.conf.erb'),
 		owner	=> root,
 		group 	=> root,
 		mode	=> 644,
@@ -46,9 +46,9 @@ class ganglia::gmon {
 		$port	= 8649
 	) {
 
-		file { '/etc/ganglia/gmon.d/100-unicast-receive-${name}.conf'
+		file { '/etc/ganglia/gmon.d/100-unicast-receive-${name}.conf' :
 			ensure	=> present,
-			content	=> template('ganglia/gmon/100-unicast-receive.conf.erb')
+			content	=> template('ganglia/gmon/100-unicast-receive.conf.erb'),
 			owner	=> root,
 			group 	=> root,
 			mode	=> 644,
@@ -66,9 +66,9 @@ class ganglia::gmon {
 			$host = $name
 		}
 
-		file { '/etc/ganglia/gmon.d/200-unicast-send-${name}.conf'
+		file { '/etc/ganglia/gmon.d/200-unicast-send-${name}.conf' :
 			ensure	=> present,
-			content	=> template('ganglia/gmon/100-unicast-send.conf.erb')
+			content	=> template('ganglia/gmon/100-unicast-send.conf.erb'),
 			owner	=> root,
 			group 	=> root,
 			mode	=> 644,
@@ -81,9 +81,9 @@ class ganglia::gmon {
 	define cluster (
 		$owner
 	) {
-		file { '/etc/ganglia/gmon.d/001-cluster.conf'
+		file { '/etc/ganglia/gmon.d/001-cluster.conf' :
 			ensure	=> present,
-			content	=> template('ganglia/gmon/000-cluster.conf.erb')
+			content	=> template('ganglia/gmon/000-cluster.conf.erb'),
 			owner	=> root,
 			group 	=> root,
 			mode	=> 644,
@@ -92,9 +92,9 @@ class ganglia::gmon {
 		}
 	}
 
-	file { '/etc/ganglia/gmon.d/300-modules.conf'
+	file { '/etc/ganglia/gmon.d/300-modules.conf' :
 		ensure	=> present,
-		content	=> template('ganglia/gmon/300-modules.conf.erb')
+		content	=> template('ganglia/gmon/300-modules.conf.erb'),
 		owner	=> root,
 		group 	=> root,
 		mode	=> 644,
