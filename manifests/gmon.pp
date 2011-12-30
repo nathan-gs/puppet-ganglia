@@ -1,7 +1,17 @@
 class ganglia::gmon {
 	
+	include ganglia::common
+
 	package { 'ganglia-monitor' :
 		ensure	=> latest,
+	}
+
+	service { 'ganglia-monitor' :
+		require		=> [Package['ganglia-monitor']],
+		ensure     => running,
+    	enable     => true,
+		hasrestart => true,
+		hasstatus  => true,
 	}
 
 	file { '/etc/ganglia/gmond.conf' :
@@ -106,5 +116,12 @@ class ganglia::gmon {
 		mode	=> 755,
 	}
 
-	
+	ganglia::gmon::unicast_receive( 'local' :
+		bind	=> '127.0.0.1'
+	)
+
+	ganglia::gmon::unicast_send( 'local' :
+		host	=> 'localhost'
+	)
+
 }

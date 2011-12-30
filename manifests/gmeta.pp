@@ -6,6 +6,7 @@ class ganglia::gmeta {
 	}
 
 	include concat::setup
+	include ganglia::common
 
 	$configuration_file = '/etc/ganglia/gmetad.conf'
 
@@ -22,7 +23,7 @@ class ganglia::gmeta {
 		order   => 01,
 	}
 
-	define sender (
+	define retriever (
 		$cluster = 'main',
 		$host = '',
 		$polling_interval = 10
@@ -39,8 +40,4 @@ class ganglia::gmeta {
 
 	}
 
-	define receiver ()
-	{
-		
-	}
 }
