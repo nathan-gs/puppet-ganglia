@@ -16,7 +16,7 @@ class ganglia::gmon {
 
 	file { '/etc/ganglia/gmond.conf' :
 		ensure	=> present,
-		content	=> template('ganglia/gmon/gmond.conf.erb')
+		content	=> template('ganglia/gmon/gmond.conf.erb'),
 		owner	=> root,
 		group 	=> root,
 		mode	=> 644,
