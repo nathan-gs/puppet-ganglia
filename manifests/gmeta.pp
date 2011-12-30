@@ -9,7 +9,7 @@ class ganglia::gmeta {
 	include ganglia::common
 
 	$configuration_file = '/etc/ganglia/gmetad.conf'
-
+	$gridname	= ''
 
 	concat{ $configuration_file :
 		owner => root,
