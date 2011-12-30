@@ -10,8 +10,8 @@ class ganglia::common {
 	}
 
 
-	group { $username:
+	group { 'ganglia' :
         gid     => 200,
-        require => User[$username]
+        require => User['ganglia']
     }
 }
