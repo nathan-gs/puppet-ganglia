@@ -32,7 +32,7 @@ class ganglia::gmeta {
 			$host = $name
 		}
 
-		concat::fragment{ 'gmeta-node-${name}':
+		concat::fragment{ "gmeta-node-${name}":
 			target	=> $configuration_file,
 			order   => 50,
 			content	=> 'data_soure "${cluster}" ${polling_interval} ${host}\n'

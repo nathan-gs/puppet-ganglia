@@ -46,7 +46,7 @@ class ganglia::gmon {
 		$port	= 8649
 	) {
 
-		file { '/etc/ganglia/gmon.d/100-unicast-receive-${name}.conf' :
+		file { "/etc/ganglia/gmon.d/100-unicast-receive-${name}.conf" :
 			ensure	=> present,
 			content	=> template('ganglia/gmon/100-unicast-receive.conf.erb'),
 			owner	=> root,
@@ -66,7 +66,7 @@ class ganglia::gmon {
 			$host = $name
 		}
 
-		file { '/etc/ganglia/gmon.d/200-unicast-send-${name}.conf' :
+		file { "/etc/ganglia/gmon.d/200-unicast-send-${name}.conf" :
 			ensure	=> present,
 			content	=> template('ganglia/gmon/200-unicast-send.conf.erb'),
 			owner	=> root,
