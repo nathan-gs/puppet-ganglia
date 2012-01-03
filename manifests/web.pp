@@ -28,13 +28,13 @@ class ganglia::web (
 
 
 	exec { "ganglia-web-sed-version" :
-                command => "sed -e s/@GWEB_VERSION@/git/ version.php.in > version.php",
+                command => 'sed -e s/@GWEB_VERSION@/git/ version.php.in > version.php',
                 cwd		=> "${www_dir}",
                 timeout => 3600,
         }
 
 	exec { "ganglia-web-sed-conf_default" :
-                command => "sed -e s/@varstatedir@/\/var\/lib/ conf_default.php.in > conf_default.php",
+                command => 'sed -e s/@varstatedir@/\/var\/lib/ conf_default.php.in > conf_default.php',
                 cwd		=> "${www_dir}",
                 timeout => 3600,
         }
