@@ -34,7 +34,7 @@ class ganglia::web (
         }
 
 	exec { "ganglia-web-sed-conf_default" :
-                command => 'sed -e s/@varstatedir@/\/var\/lib/ conf_default.php.in > conf_default.php',
+                command => 'sed -e "s/@varstatedir@/\/var\/lib/" conf_default.php.in > conf_default.php',
                 cwd		=> "${www_dir}",
                 timeout => 3600,
         }
