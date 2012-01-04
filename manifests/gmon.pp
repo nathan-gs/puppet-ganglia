@@ -146,11 +146,11 @@ class ganglia::gmon {
 	}
 
 	ganglia::gmon::unicast_receive { 'local' :
-		bind	=> '127.0.0.1'
+		bind	=> '127.0.1.1'
 	}
 
 	ganglia::gmon::unicast_send { 'local' :
-		host	=> 'localhost'
+		host	=> '127.0.1.1'
 	}
 
 }
