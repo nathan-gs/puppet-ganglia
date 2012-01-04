@@ -38,6 +38,7 @@ class ganglia::gmon {
 		owner	=> root,
 		group 	=> root,
 		mode	=> 755,
+		require	=> Package['ganglia-monitor']
 	}
 
 	file { '/etc/ganglia/gmon.d/000-globals.conf' :
