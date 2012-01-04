@@ -145,12 +145,4 @@ class ganglia::gmon {
 		mode	=> 755,
 	}
 
-	ganglia::gmon::unicast_receive { 'local' :
-		bind	=> '127.0.1.1'
-	}
-
-	ganglia::gmon::unicast_send { 'local' :
-		host	=> '127.0.1.1'
-	}
-
 }
