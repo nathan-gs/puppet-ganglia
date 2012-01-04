@@ -26,7 +26,8 @@ class ganglia::gmeta {
 	define retriever (
 		$cluster = 'main',
 		$real_host = '',
-		$polling_interval = 10
+		$polling_interval = 10,
+		$port	= 8649
 	) {
 		if $real_host == '' {
 			$host = $name
@@ -37,7 +38,7 @@ class ganglia::gmeta {
 		concat::fragment{ "gmeta-node-${name}":
 			target	=> '/etc/ganglia/gmetad.conf',
 			order   => 50,
-			content	=> "data_source \"${cluster}\" ${polling_interval} ${host}\n"
+			content	=> "data_source \"${cluster}\" ${polling_interval} ${host}:${port}\n"
 		}
 
 	}
