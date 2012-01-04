@@ -77,4 +77,8 @@ class ganglia::web (
 		replace	=> false,
     }
 
+    package { "rrdtool" :
+    	ensure	=> latest,
+    }
+
 }
