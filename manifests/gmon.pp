@@ -7,11 +7,20 @@ class ganglia::gmon {
 	}
 
 	service { 'ganglia-monitor' :
-		require		=> [Package['ganglia-monitor']],
 		ensure     => running,
     	enable     => true,
 		hasrestart => true,
-		hasstatus  => true,
+		hasstatus  => false,
+		require		=> [File['/etc/init.d/ganglia-monitor']]
+	}
+
+	file { '/etc/init.d/ganglia-monitor' :
+		ensure		=> present,
+		content	=> template('ganglia/gmon/init.erb'),
+		owner	=> root,
+		group 	=> root,
+		mode	=> 755,
+		require	=> Package['ganglia-monitor'],
 	}
 
 	file { '/etc/ganglia/gmond.conf' :
