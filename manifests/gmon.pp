@@ -52,7 +52,8 @@ class ganglia::gmon {
 
 	define unicast_receive (
 		$bind	= '',
-		$port	= 8649
+		$port	= 8649,
+		$family	= 'inet4'
 	) {
 
 		file { "/etc/ganglia/gmon.d/100-unicast-receive-${name}.conf" :
@@ -72,7 +73,9 @@ class ganglia::gmon {
 	) {
 
 		if $host == '' {
-			$host = $name
+			$real_host = $name
+		} else {
+			$real_host = $host
 		}
 
 		file { "/etc/ganglia/gmon.d/200-unicast-send-${name}.conf" :
@@ -85,6 +88,23 @@ class ganglia::gmon {
 			notify	=> Service['ganglia-monitor']
 		}
 		
+	}
+
+	define tcp_accept (
+		$bind	= '',
+		$port	= 8649,
+		$family	= 'inet4'
+	) {
+
+		file { "/etc/ganglia/gmon.d/101-tcp-accept-${name}.conf" :
+			ensure	=> present,
+			content	=> template('ganglia/gmon/101-tcp-accept.conf.erb'),
+			owner	=> root,
+			group 	=> root,
+			mode	=> 644,
+			require	=> File['/etc/ganglia/gmon.d'],
+			notify	=> Service['ganglia-monitor']
+		}
 	}
 
 	define cluster (
