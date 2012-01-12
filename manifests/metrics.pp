@@ -20,9 +20,6 @@ class ganglia::metrics {
 			monthday => $monthday,
 			hour     => $hour,
 			minute   => $minute,
-			require 	=> [
-				Service['gangia-monitor']
-				]
 		}
 	}
 }
