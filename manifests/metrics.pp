@@ -1,5 +1,7 @@
 class ganglia::metrics {
 
+	include ganglia::gmon
+
 	file { "/usr/local/share/ganglia/gmetric" :
 		source => "puppet:///modules/ganglia/gmetric",
 		recurse => true,
