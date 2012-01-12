@@ -31,7 +31,7 @@ class ganglia::metrics::lm-sensors {
                     } # service
 
                    ganglia::metrics::gmetric { "health/lm_sensors/lm_sensors.sh" :
-                   		minute	=> [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
+                   		minute	=> '*'
                    } # ganglia metric
                 } # default
 

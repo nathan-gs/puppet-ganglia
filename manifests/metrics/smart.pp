@@ -9,7 +9,7 @@ class ganglia::metrics::smart {
                 default: {
                     
                    ganglia::metrics::gmetric { "health/smartctl/smartctl.sh" :
-                   		minute	=> [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
+                   		minute	=> '*'
                    } # ganglia metric
                 } # default
 
