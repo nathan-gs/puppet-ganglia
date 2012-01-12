@@ -14,4 +14,9 @@ class ganglia::common {
 	group { 'ganglia' :
         gid     => 200,
     }
+
+    file { "/usr/local/share/ganglia" :
+		ensure	=> directory,
+		owner	=> root
+	}
 }

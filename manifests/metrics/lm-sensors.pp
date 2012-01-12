@@ -19,15 +19,15 @@ class ganglia::metrics::lm-sensors {
 
                     exec { "/usr/sbin/sensors-detect":
                         command     => "/usr/bin/yes YES | /usr/sbin/sensors-detect > /var/local/sensors-detect",
-                        require     => Package["lm_sensors"],
-                        notify      => Service["lm_sensors"],
+                        require     => Package["lm-sensors"],
+                        notify      => Service["lm-sensors"],
                         creates     => "/var/local/sensors-detect",
                         refreshonly => true,
                     } # exec
 
-                    service { "lm_sensors":
+                    service { "lm-sensors":
                         enable  => true,
-                        require => Package["lm_sensors"],
+                        require => Package["lm-sensors"],
                     } # service
 
                    ganglia::metrics::gmetric { "health/lm_sensors/lm_sensors.sh" :
