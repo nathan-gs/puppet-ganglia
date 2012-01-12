@@ -1,3 +1,9 @@
 [submodule "files/ganglia-web"]
 	path = files/ganglia-web
 	url = https://github.com/ganglia/ganglia-web.git
+[submodule "files/gmetric"]
+	path = files/gmetric
+	url = https://github.com/nathan-gs/gmetric.git
+[submodule "files/metric-python"]
+	path = files/metric-python
+	url = https://github.com/nathan-gs/gmond_python_modules.git
