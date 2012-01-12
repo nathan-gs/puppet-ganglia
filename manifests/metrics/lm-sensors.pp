@@ -13,7 +13,7 @@ class ganglia::metrics::lm-sensors {
             case $productname {
                 # systems that do not use KVM have productname blank
                 default: {
-                    package { "lm_sensors":
+                    package { "lm-sensors":
                         notify => Exec["/usr/sbin/sensors-detect"],
                     } # package
 
