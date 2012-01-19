@@ -36,6 +36,9 @@ case "$1" in
         $0 stop
         $0 start
         ;;
+  status)
+        status_of_proc -p /var/run/$NAME.pid "$DAEMON" gmond && exit 0 || exit $?
+        ;;
   *)
         N=/etc/init.d/$NAME
         # echo "Usage: $N {start|stop|restart|reload|force-reload}" >&2

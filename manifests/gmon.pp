@@ -10,7 +10,7 @@ class ganglia::gmon {
 		ensure     => running,
     	enable     => true,
 		hasrestart => true,
-		hasstatus  => false,
+		hasstatus  => true,
 		require		=> [File['/etc/init.d/ganglia-monitor']]
 	}
 
