@@ -1,0 +1,3 @@
+
+data_source "<%= cluster %>" <%= polling_interval %> <% hosts.each_pair do |host, port| -%><%= host %>:<%=port %> <% end -%>
+

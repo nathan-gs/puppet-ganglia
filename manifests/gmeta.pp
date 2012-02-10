@@ -24,21 +24,14 @@ class ganglia::gmeta {
 	}
 
 	define retriever (
-		$cluster = 'main',
-		$real_host = '',
-		$polling_interval = 10,
-		$port	= 8649
+		$hosts,
+		$polling_interval = 10
 	) {
-		if $real_host == '' {
-			$host = $name
-		} else {
-			$host = $real_host
-		}
 
 		concat::fragment{ "gmeta-node-${name}":
 			target	=> '/etc/ganglia/gmetad.conf',
 			order   => 50,
-			content	=> "data_source \"${cluster}\" ${polling_interval} ${host}:${port}\n"
+			content	=> template('ganglia/gmeta/retriever.erb')
 		}
 
 	}
