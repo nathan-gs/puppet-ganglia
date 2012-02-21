@@ -23,7 +23,7 @@ define ganglia::aggregator (
 
 	file { '/etc/init.d/ganglia-proxy-aggregator' :
 		ensure		=> present,
-		content	=> "puppet:///modules/ganglia/proxy-aggregator/ganglia-proxy-aggregator.init",
+		source	=> "puppet:///modules/ganglia/proxy-aggregator/ganglia-proxy-aggregator.init",
 		owner	=> root,
 		group 	=> root,
 		mode	=> 755,
@@ -35,7 +35,7 @@ define ganglia::aggregator (
 
 	file { '/usr/bin/ganglia-proxy-aggregator.py' :
 		ensure		=> present,
-		content	=> "puppet:///modules/ganglia/proxy-aggregator/ganglia-proxy-aggregator.py",
+		source	=> "puppet:///modules/ganglia/proxy-aggregator/ganglia-proxy-aggregator.py",
 		owner	=> root,
 		group 	=> root,
 		mode	=> 755,
