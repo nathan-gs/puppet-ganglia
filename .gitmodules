@@ -7,3 +7,6 @@
 [submodule "files/metric-python"]
 	path = files/metric-python
 	url = https://github.com/nathan-gs/gmond_python_modules.git
+[submodule "files/proxy-aggregator"]
+	path = files/proxy-aggregator
+	url = https://github.com/nathan-gs/ganglia-proxy-aggregator.git
