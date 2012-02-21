@@ -23,11 +23,19 @@ define ganglia::aggregator (
 
 	file { '/etc/init.d/ganglia-proxy-aggregator' :
 		ensure		=> present,
-		content	=> "ganglia/proxy-aggregator/ganglia-proxy-aggregator.init",
+		content	=> "puppet:///modules/ganglia/proxy-aggregator/ganglia-proxy-aggregator.init",
 		owner	=> root,
 		group 	=> root,
 		mode	=> 755,
-		require	=> File['/etc/default/ganglia-proxy-aggregator'],
+		require	=> File['/etc/default/ganglia-proxy-aggregator', File['/usr/bin/ganglia-proxy-aggregator.py']],
+	}
+
+	file { '/usr/bin/ganglia-proxy-aggregator.py' :
+		ensure		=> present,
+		content	=> "puppet:///modules/ganglia/proxy-aggregator/ganglia-proxy-aggregator.py",
+		owner	=> root,
+		group 	=> root,
+		mode	=> 755,
 	}
 
 	file { '/etc/default/ganglia-proxy-aggregator' :
