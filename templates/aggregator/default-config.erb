@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+
+# Default: empty (take the clustername from the first node to contact).
+# CLUSTER_NAME="test"
+<% if clustername != '' %>
+CLUSTER_NAME="<%= clustername %>"
+<% end -%>
+#
+# Hosts to aggregate / proxy:
+# eg. HOSTS="node01:8649 node02 nodeN:8649"
+HOSTS="<% hosts.each_pair do |host, port| -%>,<%= host %><% if port != '' %>:<%= port %><% end %> <% end %>"
+
