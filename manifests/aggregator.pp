@@ -27,7 +27,10 @@ define ganglia::aggregator (
 		owner	=> root,
 		group 	=> root,
 		mode	=> 755,
-		require	=> File['/etc/default/ganglia-proxy-aggregator', File['/usr/bin/ganglia-proxy-aggregator.py']],
+		require	=> [
+				File['/etc/default/ganglia-proxy-aggregator'], 
+				File['/usr/bin/ganglia-proxy-aggregator.py']
+			],
 	}
 
 	file { '/usr/bin/ganglia-proxy-aggregator.py' :
