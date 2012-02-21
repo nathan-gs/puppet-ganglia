@@ -1,6 +1,6 @@
 define ganglia::aggregator (
-	clustername 	= '',
-	hosts			= ''
+	$clustername 	= '',
+	$hosts			= ''
 ) {
 	
 	include ganglia::common

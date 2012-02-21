@@ -9,5 +9,5 @@ CLUSTER_NAME="<%= clustername %>"
 #
 # Hosts to aggregate / proxy:
 # eg. HOSTS="node01:8649 node02 nodeN:8649"
-HOSTS="<% hosts.each_pair do |host| -%>,<%= host %> <% end %>"
+HOSTS="<% hosts.each do |host| -%>,<%= host %> <% end %>"
 
