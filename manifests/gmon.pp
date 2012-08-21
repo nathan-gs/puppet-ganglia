@@ -83,7 +83,7 @@ class ganglia::gmon {
 			group 	=> root,
 			mode	=> 644,
 			require	=> File['/etc/ganglia/gmon.d'],
-			notify	=> Service[$service_name]
+			notify	=> Service[$ganglia::gmon::service_name]
 		}
 	}
 
