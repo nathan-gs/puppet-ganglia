@@ -1,9 +1,14 @@
 class ganglia::gmeta {
-	
 
-	package { 'gmetad' :
-		ensure	=> latest,
-	}
+	$package_name = $operatingsystem ? {
+        '(/Fedora|CentOS/)'    => ganglia-gmetad,,
+        default                => gmetad
+    }
+
+    package { $package_name :
+        ensure	=> latest,
+    }
+
 
 	include concat::setup
 	include ganglia::common
