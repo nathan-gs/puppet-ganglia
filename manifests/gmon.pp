@@ -22,10 +22,9 @@ class ganglia::gmon {
 		hasrestart  => true,
 		hasstatus   => true,
 		require	    => $operatingsystem ? {
-		        /(Debian|Ubuntu)/ => File["/etc/init.d/${service_name}"]
-		    }
-		}
-	}
+            /(Debian|Ubuntu)/ => File["/etc/init.d/${service_name}"]
+        }
+    }
 
     case $operatingsystem {
         /(Fedora|CentOS)/   : {}
