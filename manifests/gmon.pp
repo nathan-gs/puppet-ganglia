@@ -17,11 +17,14 @@ class ganglia::gmon {
 	}
 
 	service { $service_name :
-		ensure     => running,
-    	enable     => true,
-		hasrestart => true,
-		hasstatus  => true,
-		require		=> [File["/etc/init.d/${service_name}"]]
+		ensure      => running,
+    	enable      => true,
+		hasrestart  => true,
+		hasstatus   => true,
+		require	    => $operatingsystem ? {
+		        /(Debian|Ubuntu)/ => File["/etc/init.d/${service_name}"]
+		    }
+		}
 	}
 
     case $operatingsystem {
