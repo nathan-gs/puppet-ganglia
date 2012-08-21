@@ -1,7 +1,7 @@
 class ganglia::gmeta {
 
 	$package_name = $operatingsystem ? {
-        '(/Fedora|CentOS/)'    => ganglia-gmetad,,
+        '(/Fedora|CentOS/)'    => ganglia-gmetad,
         default                => gmetad
     }
 

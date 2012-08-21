@@ -3,7 +3,7 @@ class ganglia::gmon {
 	include ganglia::common
 
     $package_name = $operatingsystem ? {
-        '(/Fedora|CentOS/)'    => ganglia-gmond,,
+        '(/Fedora|CentOS/)'    => ganglia-gmond,
         default                => ganglia-monitor
     }
 
