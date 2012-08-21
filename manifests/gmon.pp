@@ -12,6 +12,11 @@ class ganglia::gmon {
         default                 => ganglia-monitor
     }
 
+    $lib_dir = $operatingsystem ? {
+       /(Fedora|CentOS)/       => '/usr/lib64/ganglia',
+       default                 => '/usr/lib/ganglia',
+    }
+
 	package { $package_name :
 		ensure	=> latest,
 	}
@@ -147,11 +152,11 @@ class ganglia::gmon {
 		owner	=> root,
 		group 	=> root,
 		mode	=> 644,
-		require	=> [File['/etc/ganglia/gmon.d'], File['/usr/lib/ganglia/python_modules'], File['/etc/ganglia/gmon.python.d']],
+		require	=> [File['/etc/ganglia/gmon.d'], File["${lib_dir}/python_modules"], File['/etc/ganglia/gmon.python.d']],
 		notify	=> Service[$service_name]
 	}
 
-	file { '/usr/lib/ganglia/python_modules' :
+	file { "${lib_dir}/ganglia/python_modules" :
 		ensure	=> directory,
 		owner	=> root,
 		group 	=> root,
