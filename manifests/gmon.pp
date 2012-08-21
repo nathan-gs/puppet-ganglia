@@ -16,7 +16,7 @@ class ganglia::gmon {
 		ensure	=> latest,
 	}
 
-	service { 'ganglia-monitor' :
+	service { $service_name :
 		ensure     => running,
     	enable     => true,
 		hasrestart => true,
