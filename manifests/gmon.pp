@@ -33,7 +33,11 @@ class ganglia::gmon {
     }
 
     case $operatingsystem {
-        /(Fedora|CentOS)/   : {}
+        /(Fedora|CentOS)/   : {
+            package { 'ganglia-gmond-python':
+                ensure  => latest,
+            }
+        }
         /(Debian|Ubuntu)/   : {
             file { '/etc/init.d/ganglia-monitor' :
                 ensure		=> present,
