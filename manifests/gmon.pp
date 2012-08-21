@@ -156,7 +156,7 @@ class ganglia::gmon {
 		notify	=> Service[$service_name]
 	}
 
-	file { "${lib_dir}/ganglia/python_modules" :
+	file { "${lib_dir}/python_modules" :
 		ensure	=> directory,
 		owner	=> root,
 		group 	=> root,
