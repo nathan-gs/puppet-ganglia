@@ -25,8 +25,8 @@ class ganglia::gmon {
 	}
 
     case $operatingsystem {
-        /(Fedora|CentOS)/       => {}
-        /(Debian|Ubuntu)/       => {
+        /(Fedora|CentOS)/   : {}
+        /(Debian|Ubuntu)/   : {
             file { '/etc/init.d/ganglia-monitor' :
                 ensure		=> present,
                 content	=> template('ganglia/gmon/init.erb'),
