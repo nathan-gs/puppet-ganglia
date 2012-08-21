@@ -9,6 +9,13 @@ class ganglia::gmeta {
         ensure	=> latest,
     }
 
+    service { 'gmetad' :
+        ensure     => running,
+        enable     => true,
+        hasrestart => true,
+        hasstatus  => true,
+    }
+
 
 	include concat::setup
 	include ganglia::common

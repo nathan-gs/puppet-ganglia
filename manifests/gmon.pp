@@ -7,6 +7,11 @@ class ganglia::gmon {
         default                 => ganglia-monitor
     }
 
+    $service_name = $operatingsystem ? {
+        /(Fedora|CentOS)/       => gmond,
+        default                 => ganglia-monitor
+    }
+
 	package { $package_name :
 		ensure	=> latest,
 	}
@@ -16,17 +21,23 @@ class ganglia::gmon {
     	enable     => true,
 		hasrestart => true,
 		hasstatus  => true,
-		require		=> [File['/etc/init.d/ganglia-monitor']]
+		require		=> [File["/etc/init.d/${service_name}"]]
 	}
 
-	file { '/etc/init.d/ganglia-monitor' :
-		ensure		=> present,
-		content	=> template('ganglia/gmon/init.erb'),
-		owner	=> root,
-		group 	=> root,
-		mode	=> 755,
-		require	=> Package['ganglia-monitor'],
-	}
+    case $operatingsystem {
+        /(Fedora|CentOS)/       => {}
+        /(Debian|Ubuntu)/       => {
+            file { '/etc/init.d/ganglia-monitor' :
+                ensure		=> present,
+                content	=> template('ganglia/gmon/init.erb'),
+                owner	=> root,
+                group 	=> root,
+                mode	=> 755,
+                require	=> Package[$package_name],
+            }
+        }
+    }
+
 
 	file { '/etc/ganglia/gmond.conf' :
 		ensure	=> present,
@@ -35,7 +46,7 @@ class ganglia::gmon {
 		group 	=> root,
 		mode	=> 644,
 		require	=> File['/etc/ganglia/gmon.d'],
-		notify	=> Service['ganglia-monitor']
+		notify	=> Service[$service_name]
 	}
 
 	file { '/etc/ganglia/gmon.d' :
@@ -43,7 +54,7 @@ class ganglia::gmon {
 		owner	=> root,
 		group 	=> root,
 		mode	=> 755,
-		require	=> Package['ganglia-monitor']
+		require	=> Package[$package_name]
 	}
 
 	file { '/etc/ganglia/gmon.d/000-globals.conf' :
@@ -53,7 +64,7 @@ class ganglia::gmon {
 		group 	=> root,
 		mode	=> 644,
 		require	=> File['/etc/ganglia/gmon.d'],
-		notify	=> Service['ganglia-monitor']
+		notify	=> Service[$service_name]
 	}
 
 	define unicast_receive (
@@ -69,7 +80,7 @@ class ganglia::gmon {
 			group 	=> root,
 			mode	=> 644,
 			require	=> File['/etc/ganglia/gmon.d'],
-			notify	=> Service['ganglia-monitor']
+			notify	=> Service[$service_name]
 		}
 	}
 
@@ -91,7 +102,7 @@ class ganglia::gmon {
 			group 	=> root,
 			mode	=> 644,
 			require	=> File['/etc/ganglia/gmon.d'],
-			notify	=> Service['ganglia-monitor']
+			notify	=> Service[$service_name]
 		}
 		
 	}
@@ -109,7 +120,7 @@ class ganglia::gmon {
 			group 	=> root,
 			mode	=> 644,
 			require	=> File['/etc/ganglia/gmon.d'],
-			notify	=> Service['ganglia-monitor']
+			notify	=> Service[$service_name]
 		}
 	}
 
@@ -123,7 +134,7 @@ class ganglia::gmon {
 			group 	=> root,
 			mode	=> 644,
 			require	=> File['/etc/ganglia/gmon.d'],
-			notify	=> Service['ganglia-monitor']
+			notify	=> Service[$service_name]
 		}
 	}
 
@@ -134,7 +145,7 @@ class ganglia::gmon {
 		group 	=> root,
 		mode	=> 644,
 		require	=> [File['/etc/ganglia/gmon.d'], File['/usr/lib/ganglia/python_modules'], File['/etc/ganglia/gmon.python.d']],
-		notify	=> Service['ganglia-monitor']
+		notify	=> Service[$service_name]
 	}
 
 	file { '/usr/lib/ganglia/python_modules' :
