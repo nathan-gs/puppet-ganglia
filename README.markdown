@@ -38,4 +38,4 @@ The node instructions apply to the head node as well.
 
 ## Author
 
-[Nathan Bijnens <nathan@nathan.gs>](nathan.gs)
+[Nathan Bijnens](http://nathan.gs)
