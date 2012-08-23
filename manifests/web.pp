@@ -50,6 +50,20 @@ class ganglia::web (
 		mode 	=> 750,
     }
 
+    file { "/var/lib/ganglia/dwoo/cache" :
+    	ensure	=> directory,
+		owner 	=> "${www_user}",
+		group 	=> "${www_group}",
+		mode 	=> 777,
+    }
+
+    file { "/var/lib/ganglia/conf" :
+    	ensure	=> directory,
+		owner 	=> "${www_user}",
+		group 	=> "${www_group}",
+		mode 	=> 777,
+    }
+
     file { "${view_conf_dir}" :
     	ensure	=> directory,
 		owner 	=> 'root',
