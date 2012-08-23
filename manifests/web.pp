@@ -24,7 +24,7 @@ class ganglia::web (
 	file { "${www_dir}/conf.php" :
 		ensure	=> present,
 		owner 	=> root,
-		group 	=> www-data,
+		group 	=> $www_group,
 		mode 	=> 640,
 		content	=> template('ganglia/web/conf.php.erb'),
 		require	=> [File[$conf_dir], File[$www_dir]]
