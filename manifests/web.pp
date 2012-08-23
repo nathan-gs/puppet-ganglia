@@ -3,7 +3,9 @@ class ganglia::web (
 	$version	= 'ganglia-web',
 	$conf_dir	= '/etc/ganglia/web.d',
 	$view_conf_dir	= '/etc/ganglia/web.conf.d',
-	$graph_dir	= '/etc/ganglia/web.graph.d'
+	$graph_dir	= '/etc/ganglia/web.graph.d',
+	$www_user = 'www-data',
+	$www_group = 'www-data'
 ) {
 
 	file { $www_dir : 
@@ -14,7 +16,7 @@ class ganglia::web (
 	file { $conf_dir :
 		ensure	=> directory,
 		owner 	=> 'root',
-		group 	=> 'www-data',
+		group 	=> "${www_group}",
 		mode 	=> 750,
 		notify	=> [Exec["ganglia-web-sed-version"], Exec["ganglia-web-sed-conf_default"]]
 	}
@@ -43,15 +45,15 @@ class ganglia::web (
 
     file { "/var/lib/ganglia/dwoo" :
     	ensure	=> directory,
-		owner 	=> 'www-data',
-		group 	=> 'www-data',
+		owner 	=> "${www_user}",
+		group 	=> "${www_group}",
 		mode 	=> 750,
     }
 
     file { "${view_conf_dir}" :
     	ensure	=> directory,
 		owner 	=> 'root',
-		group 	=> 'www-data',
+		group 	=> "${www_group}",
 		mode 	=> 750,
 		source 	=> "puppet:///modules/ganglia/${version}/conf",
 		recurse => true,
@@ -62,7 +64,7 @@ class ganglia::web (
     	content	=> template('ganglia/web/000-path.php.erb'),
     	ensure	=> present,
     	owner 	=> 'root',
-		group 	=> 'www-data',
+		group 	=> "${www_group}",
 		mode 	=> 640,
 		require	=> [File[$conf_dir],File[$view_conf_dir],File[$graph_dir]]
     }
@@ -70,7 +72,7 @@ class ganglia::web (
     file { "${graph_dir}" :
     	ensure	=> directory,
 		owner 	=> 'root',
-		group 	=> 'www-data',
+		group 	=> "${www_group}",
 		mode 	=> 750,
 		source 	=> "puppet:///modules/ganglia/${version}/graph.d",
 		recurse => true,
