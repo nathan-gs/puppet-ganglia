@@ -56,6 +56,12 @@ class ganglia::web (
 		group 	=> "${www_group}",
 		mode 	=> 777,
     }
+    file { "/var/lib/ganglia/dwoo/compiled" :
+    	ensure	=> directory,
+		owner 	=> "${www_user}",
+		group 	=> "${www_group}",
+		mode 	=> 777,
+    }
 
     file { "/var/lib/ganglia/conf" :
     	ensure	=> directory,
