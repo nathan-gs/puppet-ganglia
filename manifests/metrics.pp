@@ -5,6 +5,7 @@ class ganglia::metrics {
 	file { "/usr/local/share/ganglia/gmetric" :
 		source => "puppet:///modules/ganglia/gmetric",
 		recurse => true,
+		mode    => 755,
 	}
 
 	define gmetric(
